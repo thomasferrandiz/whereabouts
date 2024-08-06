@@ -1,3 +1,6 @@
+CURPATH=$(PWD)
+BIN_DIR=$(CURPATH)/bin
+
 IMAGE_NAME ?= whereabouts
 IMAGE_REGISTRY ?= ghcr.io/k8snetworkplumbingwg
 IMAGE_PULL_POLICY ?= Always
@@ -24,6 +27,9 @@ test: build install-tools
 
 kind:
 	hack/e2e-setup-kind-cluster.sh -n $(COMPUTE_NODES)
+
+$(BIN_DIR):
+	@mkdir -p $(BIN_DIR)
 
 YQ=$(BIN_DIR)/yq
 YQ_VERSION=v4.44.1
