@@ -46,8 +46,9 @@ WHEREABOUTS_TAG=${GITHUB_TAG}
 # patch values.yaml in-place
 
 # whereabouts image:
-WHEREABOUTS_REPO=${GITHUB_REPO_OWNER} # this is used to allow to release sriov-network-operator from forks
-$YQ_CMD -i ".images.operator = \"ghcr.io/${WHEREABOUTS_REPO}/whereabouts:${WHEREABOUTS_TAG}\"" ${HELM_VALUES}
+WHEREABOUTS_REPO=${GITHUB_REPO_OWNER} # this is used to allow to release whereabouts from forks
+$YQ_CMD -i ".images.repository = \"ghcr.io/${WHEREABOUTS_REPO}/whereabouts\"" ${HELM_VALUES}
+$YQ_CMD -i ".images.tag = ${WHEREABOUTS_TAG}" ${HELM_VALUES}
 
 # patch Chart.yaml in-place
 $YQ_CMD -i ".version = \"${WHEREABOUTS_TAG#"v"}\"" ${HELM_CHART}
