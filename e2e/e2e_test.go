@@ -705,7 +705,7 @@ var _ = Describe("Whereabouts functionality", func() {
 						pod2, err = clientInfo.ProvisionPod(
 							singlePod2Name,
 							testNamespace,
-							util.PodTierLabel(singlePodName),
+							util.PodTierLabel(singlePod2Name),
 							entities.PodNetworkSelectionElements(testNetwork2Name),
 						)
 						Expect(err).NotTo(HaveOccurred())
