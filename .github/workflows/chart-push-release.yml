@@ -26,9 +26,21 @@ jobs:
           GITHUB_REPO_OWNER: ${{ github.repository_owner }}
         run: make chart-prepare-release
     
-      - name: push chart
-        env:
-          GITHUB_TAG: ${{ github.ref_name }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO_OWNER: ${{ github.repository_owner }}
-        run: make chart-push-release
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'deployment/whereabouts-chart/'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # - name: push chart
+      #   env:
+      #     GITHUB_TAG: ${{ github.ref_name }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITHUB_REPO_OWNER: ${{ github.repository_owner }}
+      #   run: make chart-push-release
