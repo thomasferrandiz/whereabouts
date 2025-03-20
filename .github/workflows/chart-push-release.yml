@@ -39,6 +39,9 @@ jobs:
       - name: check that the chart was created
         run: ls chart/
 
+      - name: Upload chart archive with release files
+        run: gh release upload ${{ github.ref_name }} chart/whereabouts.tgz
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
