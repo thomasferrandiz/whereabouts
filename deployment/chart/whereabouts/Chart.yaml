@@ -1,6 +1,6 @@
 apiVersion: v2
-name: whereabouts-chart
-description: A Helm chart for Kubernetes
+name: whereabouts
+description: A Helm chart to deploy whereabouts
 
 # A chart can be either an 'application' or a 'library' chart.
 #
