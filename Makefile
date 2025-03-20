@@ -57,6 +57,7 @@ chart-push-release: ## push release chart
 helm-release:
 	helm package ./deployment/chart/whereabouts --destination deployment/chart/ --version $(GITHUB_TAG) --app-version $(GITHUB_TAG)
 	mv deployment/chart/whereabouts-chart-$(GITHUB_TAG).tgz deployment/chart/whereabouts.tgz
+	gh release upload $(GITHUB_TAG) deployment/chart/whereabouts.tgz 
 	wget https://$(GITHUB_REPO_OWNER).github.io/whereabouts/index.yaml -O chart/index.yaml || true
 	# helm repo index --merge chart/index.yaml --url https://github.com/$(GITHUB_REPO_OWNER)/whereabouts/releases/download/$(GITHUB_TAG)/ chart/
-	helm repo index --url https://github.com/$(GITHUB_REPO_OWNER)/whereabouts/releases/download/$(GITHUB_TAG)/ chart/
+	helm repo index --url https://github.com/$(GITHUB_REPO_OWNER)/whereabouts/releases/download/$(GITHUB_TAG)/ deployment/chart/
