@@ -40,6 +40,8 @@ jobs:
         run: ls chart/
 
       - name: Upload chart archive with release files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ github.ref_name }} chart/whereabouts.tgz
 
       - name: Setup Pages
